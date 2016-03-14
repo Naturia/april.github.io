@@ -72,7 +72,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -176,6 +176,106 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-image-feature-extraction-summary" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/14/image-feature-extraction-summary/" class="article-date">
+  	<time datetime="2016-03-14T03:02:53.000Z" itemprop="datePublished">2016-03-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/14/image-feature-extraction-summary/">Image Feature Extraction:Summary</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Feature extraction is a concept of computer vision and image processing.It refers to using computer to extract information of image as well as decide whether each image point belongs to an image feature.The result of frature extraction is that the points on the image are divided into different subsets,which often belong to the isolated point,oontinuous curve or continuous area.</p>
+<p>From wikipedia:<br><em>In machine learning, pattern recognition and in image processing, feature extraction starts from an initial set of measured data and builds derived values (features) intended to be informative and non-redundant, facilitating the subsequent learning and generalization steps, and in some cases leading to better human interpretations. Feature extraction is related to dimensionality reduction.</em></p>
+<p>Usually we use color feature,texture feature,shape feature and spatial relationship feature as common image features.</p>
+<h2 id="Color-feature"><a href="#Color-feature" class="headerlink" title="Color feature"></a>Color feature</h2><h3 id="characteristics"><a href="#characteristics" class="headerlink" title="characteristics:"></a>characteristics:</h3><p>Color feature is a global feature,which describes surface properties of the object in image or image region.General color features are based on the feature of pixels,that all pixels have their own contributions respectively.For color is not sensitive to the direction and the size of the image,it is not very good to capture the local features of the object.In addtion,it happens a lot that many useless images be put forward if we only use color feature in a large database.</p>
+<h3 id="Commonly-used-method"><a href="#Commonly-used-method" class="headerlink" title="Commonly used method"></a>Commonly used method</h3><p>Color histogram is the most common way to measure the color feature because of robustness.It won’t be affected by rotation and translation as well as image size if we futher use normalization.The disadvantage is lack of color spatial distribution information.</p>
+<h4 id="The-most-commonly-used-color-space"><a href="#The-most-commonly-used-color-space" class="headerlink" title="The most commonly used color space"></a>The most commonly used color space</h4><ul>
+<li>RGB color space</li>
+<li>HSV color space.</li>
+</ul>
+<h4 id="Color-histogram-feature-matching-method"><a href="#Color-histogram-feature-matching-method" class="headerlink" title="Color histogram feature matching method"></a>Color histogram feature matching method</h4><ul>
+<li>the histogram intersection method</li>
+<li>distance method</li>
+<li>center distance method</li>
+<li>reference color table method</li>
+<li>the cumulative color histogram method.</li>
+</ul>
+<h2 id="Texture-feature"><a href="#Texture-feature" class="headerlink" title="Texture feature"></a>Texture feature</h2><h3 id="characteristics-1"><a href="#characteristics-1" class="headerlink" title="characteristics:"></a>characteristics:</h3><p>Texture feature is also a global feature, and it describes surface properties of the object in the image or image region.But because texture is only an object’s surface properties, and can not completely reflect the nature of the object, so only use the texture feature is unable to get a high level image content. Different from the color feature, texture feature is not based on the characteristics of the pixel, it needs to be included in the region with a number of pixels in order to carry out statistical calculations. In pattern matching, the characteristics of regional appears to be superior, without unsuccess matching because of deviation.<br>As a statistical feature, texture features often have rotation invariance, also perform better in resisting noise. However, it also have shortcomings, one very obvious disadvantage is that when resolution of the image changes, the calculated texture may have a larger deviation.Futher more, due to the impact of light and reflection, the texture from the 2-D image is not necessarily the real texture of the 3-D object.</p>
+<h3 id="Commonly-used-method-1"><a href="#Commonly-used-method-1" class="headerlink" title="Commonly used method"></a>Commonly used method</h3><h4 id="Grey-Level-Co-occurrence-Matrix-GLCM"><a href="#Grey-Level-Co-occurrence-Matrix-GLCM" class="headerlink" title="Grey Level Co-occurrence Matrix (GLCM)"></a>Grey Level Co-occurrence Matrix (GLCM)</h4><p>Through experiment,Gotlieb&amp;Kreyszig found that grey level co-occurrence matrix has four key characteristics:weight,inertia,entropy ans correlation.Another typical statiatical methods is to extract texture features using autocorrelation function(i.e.,the image of the energy spectrum function),that is,get texture coarseness and directionality characteristic parameters through energy spectrum function.</p>
+<h4 id="geometric-method"><a href="#geometric-method" class="headerlink" title="geometric method"></a>geometric method</h4><ul>
+<li>Voronio checkerboard features</li>
+<li>Structure feature</li>
+</ul>
+<h4 id="model-method"><a href="#model-method" class="headerlink" title="model method"></a>model method</h4><ul>
+<li>Markov random field （MRF）</li>
+<li>Gibbs random field</li>
+</ul>
+<h4 id="signal-processing-method"><a href="#signal-processing-method" class="headerlink" title="signal processing method"></a>signal processing method</h4><ul>
+<li>gray level co-occurrence matrix</li>
+<li>Tamura texture feature</li>
+<li>auto regressive model</li>
+<li>wavelet transform<br>The gray level co-occurrence matrix feature extraction and matching mainly depends on energy, inertia, entropy and correlation between the four parameters. Tamura texture feature based on human visual perception psychology research on texture, puts forward 6 kinds of attributes, namely: roughness, contrast, Degree of orientation, line degree, regularity and rough degree. Auto regressive model (simultaneous auto-regressive SAR) is a Markov random field (MRF) is a kind of application model.</li>
+</ul>
+<h2 id="Shape-feature"><a href="#Shape-feature" class="headerlink" title="Shape feature"></a>Shape feature</h2><h3 id="characteristics-2"><a href="#characteristics-2" class="headerlink" title="characteristics:"></a>characteristics:</h3><p>It’s effective retrieving interested objects in images that based on shape feature.In general, there are two kinds of representation methods, one is outline feature, the other is the regional feature. The contour feature of the image is mainly aimed at the outer boundary of the object, while the regional feature of the image is related to the whole shape region.</p>
+<h3 id="methods"><a href="#methods" class="headerlink" title="methods"></a>methods</h3><h4 id="boundary-feature-method"><a href="#boundary-feature-method" class="headerlink" title="boundary feature method"></a>boundary feature method</h4><ul>
+<li>Hough transformation:image gray grandient direction matrix</li>
+</ul>
+<h4 id="Fourier-shape-descriptors"><a href="#Fourier-shape-descriptors" class="headerlink" title="Fourier shape descriptors"></a>Fourier shape descriptors</h4><ul>
+<li>Curvature function</li>
+<li>centroid distance</li>
+<li>complex coordinate function</li>
+</ul>
+<h4 id="shape-factor"><a href="#shape-factor" class="headerlink" title="shape factor"></a>shape factor</h4><ul>
+<li>Roundness</li>
+<li>eccentricity</li>
+<li>principal axis</li>
+<li>algebraic invariant moments</li>
+</ul>
+<h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><p><em>[1]<a href="https://en.wikipedia.org/wiki/Feature_extraction" target="_blank" rel="external">https://en.wikipedia.org/wiki/Feature_extraction</a></em><br><em>[2]<a href="http://blog.sina.com.cn/s/blog_4e6680090100d2s9.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_4e6680090100d2s9.html</a></em></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-CBIR-I-Introduction" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -296,18 +396,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>** These two weeks,we learned how to develop a web game using JS&amp;HTML5. I adapted the code of puzzle game and trying to improve its intelligence.It can tell you what in the picture after u finish the game. Let me show you now.</p>
-<h2 id="Let’s-start"><a href="#Let’s-start" class="headerlink" title="Let’s  start"></a>Let’s  start</h2><p><strong> You can access the game by the link <a href="http://naturia.coding.me/PuzzleGame" target="_blank" rel="external">ImagePuzzle</a>
-</strong> This is the very first image you may see on the game.Now we have to restore the image and complete the game.The game divides difficulty into easy,medium and hard levels.Enjoy it!</p>
+        <p>These two weeks,we learned how to develop a web game using JS&amp;HTML5. I adapted the code of puzzle game and trying to improve its intelligence.It can tell you what in the picture after u finish the game. Let me show you now.</p>
+<h2 id="Let’s-start"><a href="#Let’s-start" class="headerlink" title="Let’s  start"></a>Let’s  start</h2><p>You can access the game by the link <a href="http://naturia.coding.me/PuzzleGame" target="_blank" rel="external">ImagePuzzle</a><br>This is the very first image you may see on the game.Now we have to restore the image and complete the game.The game divides difficulty into easy,medium and hard levels.Enjoy it!</p>
 <p><img src="photo/1.png" alt="puzzlegame"></p>
-<h2 id="Completed"><a href="#Completed" class="headerlink" title="Completed"></a>Completed</h2><p>** Congratulations!We have finished the game now.<br>it tells us that the image is a rabbit.And there are three buttons.</p>
+<h2 id="Completed"><a href="#Completed" class="headerlink" title="Completed"></a>Completed</h2><p>Congratulations!We have finished the game now.<br>it tells us that the image is a rabbit.And there are three buttons.</p>
 <p><img src="photo/2.png" alt="Now finished"></p>
-<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><p>** Click “About” button we can jump to wikipedia/Rabbit page.It can tells us about little rabbit in a variety of aspects.</p>
+<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><p>Click “About” button we can jump to wikipedia/Rabbit page.It can tells us about little rabbit in a variety of aspects.</p>
 <p><img src="photo/3.png" alt="About"></p>
-<h2 id="Search-more"><a href="#Search-more" class="headerlink" title="Search more"></a>Search more</h2><p>** Click “Search more” we can get more pictures about rabbit.</p>
-<p>** Click “play again” we can continue the game.</p>
+<h2 id="Search-more"><a href="#Search-more" class="headerlink" title="Search more"></a>Search more</h2><p>   Click “Search more” we can get more pictures about rabbit.</p>
+<p>   Click “play again” we can continue the game.</p>
 <p><img src="photo/4.png" alt="Search more"></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>**  HTML5 main code as follows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">    var images = [</span><br><span class="line">        &#123; src: &apos;Big_ben.jpg&apos;, title: &apos;1&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Cat.jpg&apos;, title: &apos;2&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Cherry_blossom.jpg&apos;, title: &apos;3&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Deer.jpg&apos;, title: &apos;4&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Dog.jpg&apos;, title: &apos;5&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Helianthus.jpg&apos;, title: &apos;6&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Lake.jpg&apos;, title: &apos;7&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Lavandula.jpg&apos;, title: &apos;8&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Lily_of_the_valley.jpg&apos;, title: &apos;9&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Malus_spectabilis.jpg&apos;, title: &apos;10&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Mushroom.jpg&apos;, title: &apos;11&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Pear.jpg&apos;, title: &apos;12&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Prague.jpg&apos;, title: &apos;13&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Prairie.jpg&apos;, title: &apos;14&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Provence.jpg&apos;, title: &apos;15&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Rabbit.jpg&apos;, title: &apos;16&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Raccoon.jpg&apos;, title: &apos;17&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Sheep.jpg&apos;, title: &apos;18&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Taj_Mahal.jpg&apos;, title: &apos;19&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Venice.jpg&apos;, title: &apos;20&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Wharf.jpg&apos;, title: &apos;21&apos; &#125;</span><br><span class="line"></span><br><span class="line">    ];</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    $(function () &#123;</span><br><span class="line">        var gridSize = $(&apos;#levelPanel :radio:checked&apos;).val();</span><br><span class="line">        imagePuzzle.startGame(images, gridSize);</span><br><span class="line">        $(&apos;#newPhoto&apos;).click(function () &#123;</span><br><span class="line">            var gridSize = $(&apos;#levelPanel :radio:checked&apos;).val();  // Take the updated gridSize from UI.</span><br><span class="line">            imagePuzzle.startGame(images, gridSize);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        $(&apos;#levelPanel :radio&apos;).change(function (e) &#123;</span><br><span class="line">            var gridSize = $(this).val();</span><br><span class="line">            imagePuzzle.startGame(images, gridSize);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line">    function jumpWiki() &#123;</span><br><span class="line">        var path = images[$(&quot;#imgTitle&quot;).html() - 1].src</span><br><span class="line">        var name = path.substring(0, path.indexOf(&quot;.&quot;))</span><br><span class="line">        window.open(&quot;http://en.wikipedia.org/wiki/&quot; + name)</span><br><span class="line">    &#125;</span><br><span class="line">    function jumpBaidu() &#123;</span><br><span class="line">        var path = images[$(&quot;#imgTitle&quot;).html() - 1].src</span><br><span class="line">        var name = path.substring(0, path.indexOf(&quot;.&quot;))</span><br><span class="line">        window.open(&quot;http://cn.bing.com/images/search?q=&quot; + name)</span><br><span class="line">    &#125;</span><br><span class="line">    function rules() &#123;</span><br><span class="line">        alert(&apos;Re arrange the image parts in a way that it correctly forms the picture. \nThe no. of steps taken will be counted.&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    function about() &#123;</span><br><span class="line">        alert(&apos;Developed by Jesse Wang. \nShe can be contacted at: hellonaturia@gmail.com&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>   HTML5 main code as follows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">    var images = [</span><br><span class="line">        &#123; src: &apos;Big_ben.jpg&apos;, title: &apos;1&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Cat.jpg&apos;, title: &apos;2&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Cherry_blossom.jpg&apos;, title: &apos;3&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Deer.jpg&apos;, title: &apos;4&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Dog.jpg&apos;, title: &apos;5&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Helianthus.jpg&apos;, title: &apos;6&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Lake.jpg&apos;, title: &apos;7&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Lavandula.jpg&apos;, title: &apos;8&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Lily_of_the_valley.jpg&apos;, title: &apos;9&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Malus_spectabilis.jpg&apos;, title: &apos;10&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Mushroom.jpg&apos;, title: &apos;11&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Pear.jpg&apos;, title: &apos;12&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Prague.jpg&apos;, title: &apos;13&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Prairie.jpg&apos;, title: &apos;14&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Provence.jpg&apos;, title: &apos;15&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Rabbit.jpg&apos;, title: &apos;16&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Raccoon.jpg&apos;, title: &apos;17&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Sheep.jpg&apos;, title: &apos;18&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Taj_Mahal.jpg&apos;, title: &apos;19&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Venice.jpg&apos;, title: &apos;20&apos; &#125;,</span><br><span class="line">        &#123; src: &apos;Wharf.jpg&apos;, title: &apos;21&apos; &#125;</span><br><span class="line"></span><br><span class="line">    ];</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    $(function () &#123;</span><br><span class="line">        var gridSize = $(&apos;#levelPanel :radio:checked&apos;).val();</span><br><span class="line">        imagePuzzle.startGame(images, gridSize);</span><br><span class="line">        $(&apos;#newPhoto&apos;).click(function () &#123;</span><br><span class="line">            var gridSize = $(&apos;#levelPanel :radio:checked&apos;).val();  // Take the updated gridSize from UI.</span><br><span class="line">            imagePuzzle.startGame(images, gridSize);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        $(&apos;#levelPanel :radio&apos;).change(function (e) &#123;</span><br><span class="line">            var gridSize = $(this).val();</span><br><span class="line">            imagePuzzle.startGame(images, gridSize);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line">    function jumpWiki() &#123;</span><br><span class="line">        var path = images[$(&quot;#imgTitle&quot;).html() - 1].src</span><br><span class="line">        var name = path.substring(0, path.indexOf(&quot;.&quot;))</span><br><span class="line">        window.open(&quot;http://en.wikipedia.org/wiki/&quot; + name)</span><br><span class="line">    &#125;</span><br><span class="line">    function jumpBaidu() &#123;</span><br><span class="line">        var path = images[$(&quot;#imgTitle&quot;).html() - 1].src</span><br><span class="line">        var name = path.substring(0, path.indexOf(&quot;.&quot;))</span><br><span class="line">        window.open(&quot;http://cn.bing.com/images/search?q=&quot; + name)</span><br><span class="line">    &#125;</span><br><span class="line">    function rules() &#123;</span><br><span class="line">        alert(&apos;Re arrange the image parts in a way that it correctly forms the picture. \nThe no. of steps taken will be counted.&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">    function about() &#123;</span><br><span class="line">        alert(&apos;Developed by Jesse Wang. \nShe can be contacted at: hellonaturia@gmail.com&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 <p><em>In this part it’s clear that we just pre-set and label every picture,the label is related to its name.So if you finish the game,it can jump to the link with the name as the suffix.</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">              &lt;button type=&quot;button&quot; onclick=&quot;jumpWiki()&quot; target=&quot;_blank&quot;&gt;About&lt;/button&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;br/&gt;</span><br><span class="line">         &lt;div&gt;</span><br><span class="line">              &lt;button type=&quot;button&quot; onclick=&quot;jumpBaidu()&quot; target=&quot;_blank&quot;&gt;Search more&lt;/button&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;br/&gt;</span><br><span class="line"></span><br><span class="line">          &lt;div&gt;</span><br><span class="line">              &lt;button type=&quot;button&quot; onclick=&quot;window.location.reload(true);&quot;&gt;Play Again&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p><em>This is the control process</em><br>Now you know the principle and limits of the program,actually it’s not AI but i’m trying to make it more like identifying itself.It’s far from to the end.By the way,Thanks a lot to Dashen^_^</p>
